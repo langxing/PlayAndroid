@@ -15,15 +15,13 @@ class MineFragment : Fragment() {
     private lateinit var notificationsViewModel: MineViewModel
     private var _binding: FragmentMineBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         notificationsViewModel =
             ViewModelProvider(this).get(MineViewModel::class.java)
 

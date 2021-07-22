@@ -15,15 +15,13 @@ class SystemFragment : Fragment() {
     private lateinit var dashboardViewModel: SystemViewModel
     private var _binding: FragmentSystemBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dashboardViewModel =
             ViewModelProvider(this).get(SystemViewModel::class.java)
 

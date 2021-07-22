@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.R
 import com.example.android.databinding.FragmentHomeBinding
+import com.example.android.http.Result
 import com.zxf.basic.utils.ToastUtils
 
 class HomeFragment : Fragment() {
@@ -30,8 +31,11 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        homeViewModel.getArticleInfo(0).observe(viewLifecycleOwner, Observer {
+        homeViewModel.getArticleInfo(0).observe(viewLifecycleOwner, {
             ToastUtils.show("size=${it.size}")
+        })
+        homeViewModel.getBannerInfo().observe(viewLifecycleOwner, { result ->
+            ToastUtils.show("banner size=${result.size}")
         })
         return root
     }

@@ -51,7 +51,8 @@ dependencies {
     api Libs.retrofit
     api Libs.rxandroid
     api Libs.tingyun
-
+    
+    api AndroidX.livedata
     api AndroidX.viewmodel
     api AndroidX.androidxCore
     api AndroidX.navigationUi

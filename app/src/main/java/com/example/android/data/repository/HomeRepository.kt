@@ -5,10 +5,14 @@ import com.example.android.data.bean.ArticleData
 import com.example.android.http.BaseResponse
 import com.example.android.http.HttpCallBack
 import com.example.android.http.Result
+import com.example.android.http.Result.Error
 import com.zxf.basic.http.HttpCode
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.Call
 
 class HomeRepository(private val service: HomeService) {
@@ -21,7 +25,7 @@ class HomeRepository(private val service: HomeService) {
             }
 
             override fun onError(code: Int, msg: String) {
-                offer(Result.Error(code, msg))
+                offer(Error(code, msg))
             }
 
             override fun onFailure(call: Call<BaseResponse<ArticleData>>, t: Throwable) {
@@ -46,11 +50,15 @@ class HomeRepository(private val service: HomeService) {
             if (body?.errorCode == HttpCode.CODE_SUCCESS) {
                 emit(Result.Success(body.data))
             } else {
-                emit(Result.Error(body?.errorCode ?: -1, body?.errorMsg ?: ""))
+                emit(Error(body?.errorCode ?: -1, body?.errorMsg ?: ""))
             }
         } else {
-            emit(Result.Error(-1, response.message()))
+            emit(Error(-1, response.message()))
         }
+        emit(Result.Complete())
+    }.flowOn(Dispatchers.IO)
+    .catch {
+        emit(Error( -1, ""))
         emit(Result.Complete())
     }
 }

@@ -1,8 +1,6 @@
 package com.example.android.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.android.data.api.HomeService
 import com.example.android.data.bean.ArticleData
 import com.example.android.data.bean.BannerInfo
@@ -19,9 +17,8 @@ class HomeViewModel : BaseViewModel() {
     private val mService = getService(HomeService::class.java)
     private val mHomeRepository = HomeRepository(mService)
 
-    private val _articleData = MutableLiveData<ArticleData>()
-
     fun getArticleInfo(pageIndex: Int): LiveData<ArticleData> {
+        val articleData = MutableLiveData<ArticleData>()
         viewModelScope.launch {
             mHomeRepository.getArticleInfo(pageIndex)
                 .onStart {
@@ -29,8 +26,8 @@ class HomeViewModel : BaseViewModel() {
                 }
                 .collectLatest { result ->
                    when (result) {
-                       is Result.Success<*> -> {
-                           _articleData.value = (result as Result.Success<ArticleData>).data
+                       is Result.Success -> {
+                           articleData.value = result.data
                        }
                        is Result.Error -> {
                            ToastUtils.show(result.msg)
@@ -41,13 +38,25 @@ class HomeViewModel : BaseViewModel() {
                    }
                 }
         }
-        return _articleData
+        return articleData
     }
 
-    fun getBannerInfo(): LiveData<List<BannerInfo>> {
+    fun getBannerInfo() : LiveData<List<BannerInfo>> {
+        val data = MutableLiveData<List<BannerInfo>>()
         viewModelScope.launch {
             mHomeRepository.getBannerInfo()
-                .asLiveData()
+                .collectLatest { result ->
+                    when (result) {
+                        is Result.Success -> data.value = result.data
+                        is Result.Error -> {
+                            ToastUtils.show(result.msg)
+                        }
+                        is Result.Complete -> {
+                            ToastUtils.show("请求结束")
+                        }
+                    }
+                }
         }
+        return data
     }
 }

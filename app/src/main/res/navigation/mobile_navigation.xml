@@ -22,4 +22,9 @@
         android:name="com.example.android.ui.mine.MineFragment"
         android:label="@string/title_mine"
         tools:layout="@layout/fragment_mine" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.android.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>
