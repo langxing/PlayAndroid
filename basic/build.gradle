@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    api Libs.util
+    api Libs.kotlin
+    api Libs.titlebar
+    api Libs.material
+    api Libs.xpopup
+    api Libs.svgaplayer
+    api (Libs.permission) {
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
+    api (Libs.glide) {
+        exclude group: "com.android.support"
+    }
+    kapt Libs.glide
+    api Libs.retrofit
+    api Libs.rxandroid
+    api Libs.tingyun
+
+    api AndroidX.viewmodel
+    api AndroidX.androidxCore
+    api AndroidX.navigationUi
+    api AndroidX.constraintlayout
+    api AndroidX.navigationFragment
+
+    implementation Libs.mmkv
+    implementation Libs.converterGson
+    implementation Libs.logInterceptor
+    implementation Libs.retrofitRxjavaAdapter
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}

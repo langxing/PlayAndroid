@@ -1,0 +1,1 @@
+D:\AndroidCode\PlayAndroid\buildSrc\build\classes\kotlin\main\AndroidX.class;D:\AndroidCode\PlayAndroid\buildSrc\build\classes\kotlin\main\Libs.class;D:\AndroidCode\PlayAndroid\buildSrc\build\classes\kotlin\main\Versions.class
