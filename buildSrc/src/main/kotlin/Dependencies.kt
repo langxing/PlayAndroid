@@ -27,17 +27,19 @@ object Versions {
     const val tingyun = "2.14.10"
     const val navigation = "2.3.0"
     const val livedata = "2.2.0"
+    const val annotation = "1.2.0"
 }
 
 object AndroidX {
-    const val androidxCore = "androidx.core:core-ktx:${Versions.androidxCore}"
+    const val core = "androidx.core:core-ktx:${Versions.androidxCore}"
     const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodel}"
     const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
     const val fragment = "androidx.fragment:fragment:${Versions.fragment}"
     const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
-    const val androidxAppcompat = "androidx.appcompat:appcompat:${Versions.androidxAppcompat}"
+    const val appcompat = "androidx.appcompat:appcompat:${Versions.androidxAppcompat}"
     const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.livedata}"
+    const val annotation = "androidx.annotation:annotation:${Versions.annotation}"
     const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
 }
 

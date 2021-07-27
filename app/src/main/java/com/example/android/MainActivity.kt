@@ -24,19 +24,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navView.setupWithNavController(navController)
-//        navView.setOnItemSelectedListener { item ->
-//            when (item.itemId) {
-//                R.id.navigation_home -> {
-//                    item.icon.setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP)
-//                }
-//                R.id.navigation_system -> {
-//
-//                }
-//                R.id.navigation_mine -> {
-//
-//                }
-//            }
-//            return@setOnItemSelectedListener true
-//        }
+
     }
 }
