@@ -1,3 +1,6 @@
 rootProject.name = "PlayAndroid"
 include ':app'
 include ':basic'
+include ':main'
+include ':login'
+include ':common'
