@@ -28,6 +28,7 @@ object Versions {
     const val navigation = "2.3.0"
     const val livedata = "2.2.0"
     const val annotation = "1.2.0"
+    const val autoService = "1.0"
 }
 
 object AndroidX {
@@ -78,4 +79,5 @@ object Libs {
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
     // 听云
     const val tingyun = "com.networkbench.newlens.agent.android:nbs.newlens.agent:${Versions.tingyun}"
+    const val autoService = "com.google.auto.service:auto-service:${Versions.autoService}"
 }

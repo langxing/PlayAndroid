@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_login"
+    android:id="@+id/fragment_mine"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:name="androidx.navigation.fragment.NavHostFragment"
@@ -9,4 +9,4 @@
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:navGraph="@navigation/login_navigation" />
+    app:navGraph="@navigation/mine_navigation"/>
