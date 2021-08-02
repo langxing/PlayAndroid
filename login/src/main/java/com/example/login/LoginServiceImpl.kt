@@ -1,14 +1,16 @@
 package com.example.login
 
-import android.app.Activity
 import android.content.Intent
-import com.example.common.ILoginService
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.example.common.service.ILoginService
 import com.google.auto.service.AutoService
 
 @AutoService(ILoginService::class)
 class LoginServiceImpl : ILoginService {
 
-    override fun start(activity: Activity) {
+    override fun startLogin(activity: AppCompatActivity, callback: (result: ActivityResult) -> Unit) {
         val intent = Intent(activity, LoginActivity::class.java)
         activity.startActivity(intent)
     }

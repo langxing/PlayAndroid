@@ -6,17 +6,13 @@ buildscript {
         mavenCentral()
         maven { url 'https://jitpack.io' }
         maven { url "https://oss.jfrog.org/libs-snapshot" }
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
+        maven { url 'https://maven.fabric.io/public' }
         maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -24,12 +20,9 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
         maven { url 'https://jitpack.io' }
         maven { url "https://oss.jfrog.org/libs-snapshot" }
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
+        maven { url 'https://maven.fabric.io/public' }
         maven { url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/" }
     }
 }

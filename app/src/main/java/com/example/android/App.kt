@@ -3,6 +3,7 @@ package com.example.android
 import android.app.Application
 import com.zxf.basic.AppManager
 import com.zxf.basic.http.RetrofitHelper
+import com.zxf.basic.utils.MMKVUtils
 import com.zxf.basic.utils.ToastUtils
 
 class App : Application() {
@@ -12,6 +13,7 @@ class App : Application() {
         instace = this
         ToastUtils.init(this)
         AppManager.get().init(this)
+        MMKVUtils.get().init(this)
         RetrofitHelper.get().setUrl("https://www.wanandroid.com/")
     }
 

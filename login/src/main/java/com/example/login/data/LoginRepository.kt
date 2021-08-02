@@ -1,46 +1,25 @@
 package com.example.login.data
 
-import com.example.login.data.model.LoggedInUser
+import kotlinx.coroutines.flow.flow
+import java.lang.Exception
 
 /**
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository(val dataSource: LoginDataSource) {
+class LoginRepository {
 
-    // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
-        private set
-
-    val isLoggedIn: Boolean
-        get() = user != null
-
-    init {
-        // If user credentials will be cached in local storage, it is recommended it be encrypted
-        // @see https://developer.android.com/training/articles/keystore
-        user = null
-    }
-
-    fun logout() {
-        user = null
-        dataSource.logout()
-    }
-
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
-        val result = dataSource.login(username, password)
-
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
+    fun login(username: String?, password: String?) = flow {
+        if (username.isNullOrEmpty()) {
+            emit(Result.Error(Exception("用户名不能为空")))
+        } else if (password.isNullOrEmpty()) {
+            emit(Result.Error(Exception("密码不能为空")))
+        } else if (username == "jack" && password == "123456") {
+            emit(Result.Success("登录成功"))
+        } else {
+            emit(Result.Error(Exception("登录失败")))
         }
-
-        return result
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user = loggedInUser
-        // If user credentials will be cached in local storage, it is recommended it be encrypted
-        // @see https://developer.android.com/training/articles/keystore
-    }
 }

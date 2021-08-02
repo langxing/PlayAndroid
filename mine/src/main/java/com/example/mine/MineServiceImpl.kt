@@ -1,7 +1,7 @@
 package com.example.mine
 
 import android.app.Activity
-import com.example.common.IMineService
+import com.example.common.service.IMineService
 import com.google.auto.service.AutoService
 import com.zxf.basic.expand.start
 

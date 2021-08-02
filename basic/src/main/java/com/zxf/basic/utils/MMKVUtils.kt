@@ -35,16 +35,16 @@ class MMKVUtils private constructor() {
 
     inline fun <reified T> get(key: String): T? {
         val mmkv = MMKV.defaultMMKV()
-        val value = when(T::class.java) {
-            Int::class.java -> mmkv?.decodeInt(key, -1)
-            Boolean::class.java -> mmkv?.decodeBool(key, false)
-            Long::class.java -> mmkv?.decodeLong(key, 0)
-            String::class.java -> mmkv?.getString(key, "")
-            Double::class.java -> mmkv?.decodeDouble(key)
-            Float::class.java -> mmkv?.decodeFloat(key)
-            ByteArray::class.java -> mmkv?.decodeBytes(key)
-            Parcelable::class.java -> mmkv?.decodeParcelable(key, Parcelable::class.java)
-            Set::class.java -> mmkv?.decodeStringSet(key)
+        val value = when(T::class) {
+            Int::class -> mmkv?.decodeInt(key, -1)
+            Boolean::class -> mmkv?.decodeBool(key, false)
+            Long::class -> mmkv?.decodeLong(key, 0)
+            String::class -> mmkv?.getString(key, "")
+            Double::class -> mmkv?.decodeDouble(key)
+            Float::class -> mmkv?.decodeFloat(key)
+            ByteArray::class -> mmkv?.decodeBytes(key)
+            Parcelable::class -> mmkv?.decodeParcelable(key, Parcelable::class.java)
+            Set::class -> mmkv?.decodeStringSet(key)
             else -> null
         }
         return value as T?

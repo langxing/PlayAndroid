@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -39,6 +40,11 @@ android {
 dependencies {
 
     implementation project(path: ':basic')
+    implementation project(path: ':common')
+    implementation project(path: ':mine')
+    implementation project(path: ':login')
+    implementation Libs.autoService
+    kapt Libs.autoService
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

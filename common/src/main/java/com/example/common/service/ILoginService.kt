@@ -1,6 +1,7 @@
-package com.example.common
+package com.example.common.service
 
-import android.app.Activity
+import androidx.activity.result.ActivityResult
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * 组件化：
@@ -13,5 +14,5 @@ import android.app.Activity
  */
 interface ILoginService {
 
-    fun start(activity: Activity)
+    fun startLogin(activity: AppCompatActivity, callback: (result: ActivityResult) -> Unit)
 }

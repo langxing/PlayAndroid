@@ -57,6 +57,8 @@ dependencies {
     api AndroidX.viewmodel
     api AndroidX.appcompat
     api AndroidX.annotation
+    api AndroidX.activityKtx
+    api AndroidX.fragmentKtx
     api AndroidX.navigationUi
     api AndroidX.constraintlayout
     api AndroidX.navigationFragment
