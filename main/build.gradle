@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -41,6 +42,9 @@ dependencies {
     if (runMine.toBoolean()) {
         implementation project(path: ':mine')
     }
+    implementation Libs.autoService
+    kapt Libs.autoService
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

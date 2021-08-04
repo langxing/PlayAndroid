@@ -6,7 +6,7 @@ object Versions {
     const val androidxCore = "1.3.0"
     const val androidxAppcompat = "1.2.0"
     const val constraintlayout = "2.0.4"
-    const val activityKtx = "1.2.2"
+    const val activityKtx = "1.3.0"
     const val permission = "11.5"
     const val titlebar = "8.6"
     const val mmkv = "1.2.9"

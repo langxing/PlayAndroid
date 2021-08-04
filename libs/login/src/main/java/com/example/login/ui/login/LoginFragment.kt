@@ -81,7 +81,6 @@ class LoginFragment : Fragment() {
             when (result) {
                 is Result.Success -> {
                     context?.apply {
-                        toast("登录成功")
                         MMKVUtils.get().put(Constant.KEY_LOGIN, true)
                         val intent = Intent()
                         val activity = requireActivity()
