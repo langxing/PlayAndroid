@@ -2,7 +2,6 @@ package com.example.login
 
 import android.content.Intent
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.common.service.ILoginService
 import com.google.auto.service.AutoService

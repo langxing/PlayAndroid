@@ -1,7 +1,12 @@
 rootProject.name = "PlayAndroid"
 include ':app'
-include ':basic'
 include ':main'
+
+include ':basic'
+project(':basic').projectDir = new File('libs/basic')
 include ':login'
+project(':login').projectDir = new File('libs/login')
 include ':common'
+project(':common').projectDir = new File('libs/common')
 include ':mine'
+project(':mine').projectDir = new File('libs/mine')
