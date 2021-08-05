@@ -19,9 +19,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun layout(): Int
 
-    abstract fun initView()
+    open fun initView() {}
 
-    abstract fun initData()
+    open fun initData() {}
 
     protected fun showLoading() {
         if (loadingProgress == null) {

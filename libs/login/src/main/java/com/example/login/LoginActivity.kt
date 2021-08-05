@@ -6,11 +6,4 @@ class LoginActivity : BaseActivity() {
 
     override fun layout(): Int = R.layout.activity_login
 
-    override fun initView() {
-
-    }
-
-    override fun initData() {
-
-    }
 }

@@ -38,6 +38,8 @@ dependencies {
     implementation Libs.autoService
     kapt Libs.autoService
 
+    api Libs.dynamic
+
     implementation project(path: ':basic')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

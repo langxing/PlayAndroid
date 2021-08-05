@@ -30,6 +30,7 @@ object Versions {
     const val annotation = "1.2.0"
     const val autoService = "1.0"
     const val sonic = "3.1.0"
+    const val dynamic = "1.0.0"
 }
 
 object AndroidX {
@@ -84,4 +85,6 @@ object Libs {
     const val autoService = "com.google.auto.service:auto-service:${Versions.autoService}"
     // 腾讯网页加速
     const val sonic = "com.tencent.sonic:sdk:${Versions.sonic}"
+
+    const val dynamic = "androidx.dynamicanimation:dynamicanimation:${Versions.dynamic}"
 }
