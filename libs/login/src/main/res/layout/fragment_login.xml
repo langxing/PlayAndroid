@@ -11,9 +11,9 @@
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="登录账号"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:title="登录账号" />
 
     <LinearLayout
         android:id="@+id/llInput"
@@ -24,37 +24,30 @@
         android:padding="10dp"
         app:layout_constraintTop_toBottomOf="@+id/titlebar">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/tv_person_username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:hint="请输入用户名"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:singleLine="true" />
 
-            <AutoCompleteTextView
-                android:id="@+id/tv_person_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入用户名"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <com.example.common.widget.PasswordEditText
+            android:id="@+id/tv_person_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.example.common.widget.PasswordEditText
-                android:id="@+id/tv_person_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入密码"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="login"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                tools:ignore="InvalidImeActionId" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:hint="请输入密码"
+            android:imeActionId="@+id/login"
+            android:imeActionLabel="login"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            tools:ignore="InvalidImeActionId" />
     </LinearLayout>
 
     <Button
@@ -67,7 +60,7 @@
         android:textSize="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llInput"/>
+        app:layout_constraintTop_toBottomOf="@+id/llInput" />
 
     <TextView
         android:id="@+id/tv_person_register"
@@ -80,7 +73,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_person_login"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_person_login" />
 
     <TextView
         android:id="@+id/tvTip"
@@ -93,7 +86,7 @@
         android:textColor="@color/blackText"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_person_register"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_person_register" />
 
     <!--第三方登录-->
     <LinearLayout
@@ -146,6 +139,7 @@
                 android:text="新浪账号登录" />
         </LinearLayout>
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/pbLoading"
         android:layout_width="wrap_content"
@@ -156,8 +150,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="64dp"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
