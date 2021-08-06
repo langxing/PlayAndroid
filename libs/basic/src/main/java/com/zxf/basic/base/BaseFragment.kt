@@ -50,5 +50,5 @@ abstract class BaseFragment : Fragment() {
     /**
      * 获取viewmodel实例
      */
-    fun <M : ViewModel> get(clazz: Class<M>): M = ViewModelProvider(this).get(clazz)
+    inline fun <reified M : ViewModel> getViewModel(): M = ViewModelProvider(this).get(M::class.java)
 }

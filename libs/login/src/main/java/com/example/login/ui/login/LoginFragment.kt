@@ -2,82 +2,75 @@ package com.example.login.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.text.Editable
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.common.Constant
 import com.example.common.service.ServiceManager
-import com.example.login.R
 import com.example.login.data.Result
+import com.example.login.databinding.FragmentLoginBinding
+import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.toast
 import com.zxf.basic.utils.MMKVUtils
 import com.zxf.basic.view.EditWatcher
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginFragment : Fragment() {
+class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
 
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var loginResult: Observer<Result<String>>
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+    override fun initView() {
+        val afterTextChangedListener = object : EditWatcher() {
+
+            override fun afterTextChanged(s: Editable) {
+                loginViewModel.loginDataChanged(
+                    mBinding.tvPersonUsername.text.toString(),
+                    mBinding.tvPersonPassword.text.toString()
+                )
+            }
+
+        }
+        mBinding.tvPersonUsername.addTextChangedListener(afterTextChangedListener)
+        mBinding.tvPersonPassword.addTextChangedListener(afterTextChangedListener)
+        mBinding.tvPersonPassword.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                loginViewModel.login(
+                    mBinding.tvPersonUsername.text.toString(),
+                    mBinding.tvPersonPassword.text.toString()
+                )
+            }
+            false
+        }
+        mBinding.btnPersonLogin.setOnClickListener {
+            mBinding.pbLoading.visibility = View.VISIBLE
+            loginViewModel.login(
+                mBinding.tvPersonUsername.text.toString(),
+                mBinding.tvPersonPassword.text.toString()
+            ).observe(viewLifecycleOwner, loginResult)
+        }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initData() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
-
-        val usernameEditText = username
-        val passwordEditText = password
-        val loginButton = login
-        val loadingProgressBar = loading
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
                 if (loginFormState == null) {
                     return@Observer
                 }
-                loginButton.isEnabled = loginFormState.isDataValid
+                mBinding.btnPersonLogin.isEnabled = loginFormState.isDataValid
                 loginFormState.usernameError?.let {
-                    usernameEditText.error = getString(it)
+                    mBinding.tvPersonUsername.error = getString(it)
                 }
                 loginFormState.passwordError?.let {
-                    passwordEditText.error = getString(it)
+                    mBinding.tvPersonPassword.error = getString(it)
                 }
             })
 
-        val afterTextChangedListener = object : EditWatcher() {
-
-            override fun afterTextChanged(s: Editable) {
-                loginViewModel.loginDataChanged(
-                    usernameEditText.text.toString(),
-                    passwordEditText.text.toString()
-                )
-            }
-
-        }
-        usernameEditText.addTextChangedListener(afterTextChangedListener)
-        passwordEditText.addTextChangedListener(afterTextChangedListener)
-        passwordEditText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.login(
-                    usernameEditText.text.toString(),
-                    passwordEditText.text.toString()
-                )
-            }
-            false
-        }
-
-        val loginResult = Observer<Result<String>> { result ->
+        loginResult = Observer<Result<String>> { result ->
             when (result) {
                 is Result.Success -> {
                     context?.apply {
@@ -96,18 +89,16 @@ class LoginFragment : Fragment() {
                     }
                 }
             }
-            loadingProgressBar.postDelayed({
-                loadingProgressBar.visibility = View.GONE
+            mBinding.pbLoading.postDelayed({
+                mBinding.pbLoading.visibility = View.GONE
             }, 500)
         }
 
-        loginButton.setOnClickListener {
-            loadingProgressBar.visibility = View.VISIBLE
-            loginViewModel.login(
-                usernameEditText.text.toString(),
-                passwordEditText.text.toString()
-            ).observe(viewLifecycleOwner, loginResult)
-        }
     }
+
+    override val mBinding: FragmentLoginBinding
+        get() = FragmentLoginBinding.inflate(layoutInflater)
+    override val mViewModel: LoginViewModel
+        get() = getViewModel()
 
 }

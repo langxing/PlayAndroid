@@ -1,6 +1,7 @@
 package com.example.android
 
 import android.app.Application
+import com.example.common.GlobalContext
 import com.zxf.basic.AppManager
 import com.zxf.basic.http.RetrofitHelper
 import com.zxf.basic.utils.MMKVUtils
@@ -12,6 +13,7 @@ class App : Application() {
         super.onCreate()
         instace = this
         ToastUtils.init(this)
+        GlobalContext.init(this)
         AppManager.get().init(this)
         MMKVUtils.get().init(this)
         RetrofitHelper.get().setUrl("https://www.wanandroid.com/")

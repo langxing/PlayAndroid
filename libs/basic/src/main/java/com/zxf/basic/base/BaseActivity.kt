@@ -12,7 +12,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout())
+        if (layout() != 0) {
+            setContentView(layout())
+        }
         initView()
         initData()
     }
@@ -39,5 +41,5 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 获取viewmodel实例
      */
-    fun <M : ViewModel> get(clazz: Class<M>): M = ViewModelProvider(this).get(clazz)
+    inline fun <reified M : ViewModel> getViewModel(): M = ViewModelProvider(this).get(M::class.java)
 }
