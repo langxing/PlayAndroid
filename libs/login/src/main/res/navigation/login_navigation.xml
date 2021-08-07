@@ -9,6 +9,15 @@
         android:id="@+id/loginFragment"
         android:name="com.example.login.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_regist"
+            app:destination="@id/registFragment"/>
+    </fragment>
 
+    <fragment
+        android:id="@+id/registFragment"
+        android:name="com.example.login.ui.regist.RegistFragment"
+        android:label="fragment_regist"
+        tools:layout="@layout/fragment_regist"/>
 </navigation>

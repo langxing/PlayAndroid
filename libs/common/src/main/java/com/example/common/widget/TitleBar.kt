@@ -10,10 +10,12 @@ import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.BarUtils
 import com.example.common.R
 import com.example.common.extension.dp2px
+import com.example.common.extension.expandTouchArea
 import com.example.common.extension.sp2px
 import kotlinx.android.synthetic.main.layout_titlebar.view.*
 
 class TitleBar : Toolbar {
+    lateinit var onBackClick: () -> Unit
 
     constructor(context: Context) : this(context, null)
 
@@ -29,6 +31,11 @@ class TitleBar : Toolbar {
         tvTitle.setTextColor(typedArray.getColor(R.styleable.TitleBar_titleColor, Color.WHITE))
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,
             typedArray.getDimension(R.styleable.TitleBar_titleSize, 18f.sp2px().toFloat()))
+        ivBack.setOnClickListener {
+            if (this::onBackClick.isInitialized) {
+                onBackClick.invoke()
+            }
+        }
     }
 
 }

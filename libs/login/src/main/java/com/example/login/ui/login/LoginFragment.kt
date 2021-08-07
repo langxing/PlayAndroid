@@ -7,11 +7,14 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.common.Constant
 import com.example.common.service.ServiceManager
+import com.example.login.R
 import com.example.login.data.Result
 import com.example.login.databinding.FragmentLoginBinding
 import com.zxf.basic.base.BindingFragment
+import com.zxf.basic.expand.signClick
 import com.zxf.basic.expand.toast
 import com.zxf.basic.utils.MMKVUtils
 import com.zxf.basic.view.EditWatcher
@@ -23,6 +26,11 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
     private lateinit var loginResult: Observer<Result<String>>
 
     override fun initView() {
+        titlebar.onBackClick = {
+            if (!findNavController().popBackStack()) {
+                requireActivity().finish()
+            }
+        }
         val afterTextChangedListener = object : EditWatcher() {
 
             override fun afterTextChanged(s: Editable) {
@@ -32,6 +40,9 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
                 )
             }
 
+        }
+        tv_person_register.signClick {
+            findNavController().navigate(R.id.registFragment)
         }
         mBinding.tvPersonUsername.addTextChangedListener(afterTextChangedListener)
         mBinding.tvPersonPassword.addTextChangedListener(afterTextChangedListener)

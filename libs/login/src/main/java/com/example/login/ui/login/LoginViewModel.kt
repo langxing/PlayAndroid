@@ -9,8 +9,9 @@ import com.example.login.data.LoginRepository
 import com.example.login.data.Result
 
 import com.example.login.R
+import com.zxf.basic.base.BaseViewModel
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
