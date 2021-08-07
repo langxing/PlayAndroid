@@ -8,8 +8,14 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitHelper private constructor() {
     private var retrofit: Retrofit? = null
-    private val retrofitMap = mapOf<String, Retrofit>()
-    private var baseUrl = ""
+    private val retrofitMap = mutableMapOf<String, Retrofit>()
+
+    private var  okHttpClient = okHttpClient {
+        addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        addInterceptor(CustomInterceptor())
+        readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
+        connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
+    }
 
     companion object {
         private const val READ_TIME_OUT = 10 * 1000L
@@ -26,26 +32,29 @@ class RetrofitHelper private constructor() {
      * 全局默认URL
      */
     fun setUrl(url: String) {
-        baseUrl = url
-        val okHttpClient = okHttpClient {
-            addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-            addInterceptor(CustomInterceptor())
-            readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
-            connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
-        }
         retrofit = retrofit {
             client(okHttpClient)
-            baseUrl(baseUrl)
+            baseUrl(url)
             addConverterFactory(GsonConverterFactory.create())
             addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         }
+        retrofitMap[url] = retrofit!!
     }
 
     /**
      * 新的URL
      */
-    fun addUrl() {
-
+    fun addUrl(url: String) {
+        retrofit = retrofitMap[url]
+        if (retrofit == null) {
+            retrofit = retrofit {
+                client(okHttpClient)
+                baseUrl(url)
+                addConverterFactory(GsonConverterFactory.create())
+                addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            }
+            retrofitMap[url] = retrofit!!
+        }
     }
 
     fun <T> create(clazz: Class<T>): T {
