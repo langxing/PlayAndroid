@@ -51,6 +51,7 @@ dependencies {
     api Libs.retrofit
     api Libs.rxandroid
     api Libs.tingyun
+    api Libs.sofia
 
     api AndroidX.core
     api AndroidX.livedata
