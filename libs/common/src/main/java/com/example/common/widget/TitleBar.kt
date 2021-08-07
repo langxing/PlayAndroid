@@ -7,8 +7,9 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import com.blankj.utilcode.util.BarUtils
 import com.example.common.R
-import com.example.common.extension.dip2px
+import com.example.common.extension.dp2px
 import com.example.common.extension.sp2px
 import kotlinx.android.synthetic.main.layout_titlebar.view.*
 
@@ -19,9 +20,9 @@ class TitleBar : Toolbar {
     constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
         LayoutInflater.from(context).inflate(R.layout.layout_titlebar, this)
         setBackgroundColor(ContextCompat.getColor(context, R.color.colorTheme))
-        setPadding(15f.sp2px(), 0, 15f.dip2px(), 0)
-        val height = context.resources.getDimension(android.R.dimen.app_icon_size).toInt()
-        layoutParams = MarginLayoutParams(MarginLayoutParams.MATCH_PARENT, height)
+        val barHeight = BarUtils.getStatusBarHeight()
+        setPadding(15f.dp2px(), barHeight, 15f.dp2px(), barHeight/2)
+        layoutParams = MarginLayoutParams(MarginLayoutParams.MATCH_PARENT, MarginLayoutParams.WRAP_CONTENT)
         val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.TitleBar)
         tvTitle.text = title
         title = ""

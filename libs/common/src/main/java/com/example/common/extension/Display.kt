@@ -5,7 +5,7 @@ import com.example.common.GlobalContext
 /**
  * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
  */
-fun Float.dip2px(): Int {
+fun Float.dp2px(): Int {
     val scale = GlobalContext.application!!.resources.displayMetrics.density;
     return (this * scale + 0.5f).toInt()
 }
@@ -13,7 +13,7 @@ fun Float.dip2px(): Int {
 /**
  * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
  */
-fun Float.px2dip(): Int {
+fun Float.px2dp(): Int {
     val scale: Float = GlobalContext.application!!.resources.displayMetrics.density
     return (this / scale + 0.5f).toInt()
 }

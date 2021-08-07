@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.blankj.utilcode.util.BarUtils
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
 
@@ -13,6 +14,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        BarUtils.transparentStatusBar(window)
         //避免切换横竖屏
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         if (layout() != 0) {

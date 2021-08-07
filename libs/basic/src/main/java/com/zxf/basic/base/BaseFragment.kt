@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.impl.LoadingPopupView
-import com.zxf.basic.expand.toast
 
 abstract class BaseFragment : Fragment() {
     private var loadingProgress: LoadingPopupView? = null
