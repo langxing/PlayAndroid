@@ -8,5 +8,4 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>() {
     override val mBinding: ActivityLoginBinding
         get() = ActivityLoginBinding.inflate(layoutInflater)
 
-
 }
