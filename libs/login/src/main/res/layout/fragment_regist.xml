@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <!--    <include layout="@layout/base_tool_bar"/>-->
+    <com.example.common.widget.TitleBar
+        android:id="@+id/titlebar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:title="注册账号"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,49 +19,13 @@
         android:layout_marginRight="40dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_person_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/shape_btn_color_bg"
-            android:text="注 册"
-            android:textSize="20dp" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <!--勾选框-->
-            <CheckBox
-                android:id="@+id/cb_is_agree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-5dp"
-                android:checked="true" />
-
-            <TextView
-                android:id="@+id/tv_about"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="同意《我们的服务条款》"
-                android:textColor="@color/blackText"
-                android:textSize="16sp" />
-        </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <AutoCompleteTextView
                     android:id="@+id/tv_person_username"
                     android:layout_width="match_parent"
@@ -66,11 +35,9 @@
                     android:maxLines="1"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <AutoCompleteTextView
                     android:id="@+id/tv_person_code"
                     android:layout_width="match_parent"
@@ -80,11 +47,9 @@
                     android:maxLines="1"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <com.example.common.widget.PasswordEditText
                     android:id="@+id/tv_person_password"
                     android:layout_width="match_parent"
@@ -98,11 +63,9 @@
                     android:singleLine="true"
                     tools:ignore="InvalidImeActionId" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <com.example.common.widget.PasswordEditText
                     android:id="@+id/tv_person_password_again"
                     android:layout_width="match_parent"
@@ -117,6 +80,43 @@
                     tools:ignore="InvalidImeActionId" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <!--勾选框-->
+            <CheckBox
+                android:id="@+id/cb_is_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-5dp"
+                android:checked="true" />
+            <TextView
+                android:id="@+id/tv_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/blackText"
+                android:text="同意《我们的服务条款》"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_person_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_btn_color_bg"
+            android:text="注 册"
+            android:textSize="20dp"/>
     </LinearLayout>
+
+
+
+
+
 
 </LinearLayout>

@@ -1,9 +1,11 @@
 package com.example.login
 
-import com.zxf.basic.base.BaseActivity
+import com.example.login.databinding.ActivityLoginBinding
+import com.zxf.basic.base.BindingActivity
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : BindingActivity<ActivityLoginBinding>() {
 
-    override fun layout(): Int = R.layout.activity_login
+    override val mBinding: ActivityLoginBinding
+        get() = ActivityLoginBinding.inflate(layoutInflater)
 
 }

@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@android:dimen/app_icon_size"
-    tools:background="@color/grayLine">
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    tools:background="@color/colorTheme">
 
     <ImageView
+        android:id="@+id/ivBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        tools:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_arrow_back" />
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/blackText"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        tools:text="标题" />
+        tools:text="标题"/>
 
-</androidx.appcompat.widget.Toolbar>
+    <ViewStub
+        android:id="@+id/vs_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"/>
+</merge>

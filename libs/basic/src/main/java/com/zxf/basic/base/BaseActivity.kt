@@ -15,7 +15,9 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //避免切换横竖屏
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-        setContentView(layout())
+        if (layout() != 0) {
+            setContentView(layout())
+        }
         initView()
         initData()
     }
@@ -42,5 +44,5 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 获取viewmodel实例
      */
-    fun <M : ViewModel> get(clazz: Class<M>): M = ViewModelProvider(this).get(clazz)
+    inline fun <reified M : ViewModel> getViewModel(): M = ViewModelProvider(this).get(M::class.java)
 }
