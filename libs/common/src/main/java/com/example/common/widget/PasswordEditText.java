@@ -74,8 +74,6 @@ public class PasswordEditText extends AppCompatEditText {
             }
         }
 
-        // 密码状态
-        setInputType(EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
         addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
