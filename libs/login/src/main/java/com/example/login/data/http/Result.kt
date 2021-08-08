@@ -1,6 +1,4 @@
-package com.example.android.http
-
-import com.example.login.data.http.Result
+package com.example.login.data.http
 
 sealed class Result<T> {
     /**

@@ -5,11 +5,10 @@ import com.example.android.data.api.HomeService
 import com.example.android.data.bean.ArticleData
 import com.example.android.data.bean.BannerInfo
 import com.example.android.data.repository.HomeRepository
-import com.example.android.http.Result
+import com.example.login.data.http.Result
 import com.zxf.basic.base.BaseViewModel
 import com.zxf.basic.utils.ToastUtils
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 

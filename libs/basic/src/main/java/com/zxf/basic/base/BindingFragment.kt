@@ -9,7 +9,8 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BindingFragment<V : ViewBinding, M : ViewModel> : BaseFragment() {
 
-    abstract val mBinding: V
+    lateinit var mBinding: V
+    private set
 
     abstract val mViewModel: M
 
@@ -20,8 +21,11 @@ abstract class BindingFragment<V : ViewBinding, M : ViewModel> : BaseFragment() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return mBinding.root
+        mBinding = initBinding(inflater, container, savedInstanceState)
+        return if (this::mBinding.isInitialized) mBinding.root else throw NullPointerException("必须先初始化binding")
     }
 
-
+    abstract fun initBinding(inflater: LayoutInflater,
+                             container: ViewGroup?,
+                             savedInstanceState: Bundle?): V
 }

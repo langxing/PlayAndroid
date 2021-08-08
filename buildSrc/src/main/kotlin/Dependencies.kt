@@ -31,6 +31,7 @@ object Versions {
     const val autoService = "1.0"
     const val sonic = "3.1.0"
     const val dynamic = "1.0.0"
+    const val lifecycle = "2.2.0"
 }
 
 object AndroidX {
@@ -45,6 +46,8 @@ object AndroidX {
     const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.livedata}"
     const val annotation = "androidx.annotation:annotation:${Versions.annotation}"
     const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
+    const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
 }
 
 object Libs {

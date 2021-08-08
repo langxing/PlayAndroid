@@ -66,6 +66,9 @@ dependencies {
     api AndroidX.constraintlayout
     api AndroidX.navigationFragment
 
+    api AndroidX.lifecycle
+    kapt AndroidX.lifecycleCompiler
+
     implementation Libs.mmkv
     implementation Libs.converterGson
     implementation Libs.logInterceptor

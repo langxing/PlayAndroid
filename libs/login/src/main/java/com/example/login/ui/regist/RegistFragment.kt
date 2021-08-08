@@ -1,10 +1,18 @@
 package com.example.login.ui.regist
 
+import android.os.Bundle
+import android.text.Editable
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.login.R
+import com.example.login.data.Result
 import com.example.login.databinding.FragmentRegistBinding
 import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.signClick
-import kotlinx.android.synthetic.main.fragment_regist.*
+import com.zxf.basic.expand.toast
+import com.zxf.basic.view.EditWatcher
 
 /**
  * 注册页
@@ -14,8 +22,36 @@ import kotlinx.android.synthetic.main.fragment_regist.*
 class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>() {
 
     override fun initView() {
-        titlebar.signClick {
+        mBinding.titlebar.onBackClick =  {
             findNavController().popBackStack()
+        }
+        val textWatcher = object: EditWatcher() {
+            override fun afterTextChanged(p0: Editable?) {
+                mBinding.btnPersonRegister.isEnabled =  mBinding.tvPersonUsername.text.isNotEmpty()
+                    && mBinding.tvPersonPassword.text!!.isNotEmpty()
+                    && mBinding.tvPersonPasswordAgain.text!!.isNotEmpty()
+            }
+
+        }
+        mBinding.tvPersonUsername.addTextChangedListener(textWatcher)
+        mBinding.tvPersonPassword.addTextChangedListener(textWatcher)
+        mBinding.tvPersonPasswordAgain.addTextChangedListener(textWatcher)
+        mBinding.btnPersonRegister.signClick {
+            mViewModel.regist(
+                mBinding.tvPersonUsername.text.toString(),
+                mBinding.tvPersonPassword.text.toString(),
+                mBinding.tvPersonPasswordAgain.text.toString(),
+            ).observe(viewLifecycleOwner, { result ->
+                when (result) {
+                    is Result.Success -> {
+                        context?.toast("注册成功")
+                        findNavController().popBackStack(R.id.loginFragment, false)
+                    }
+                    is Result.Error -> {
+                        context?.toast("注册失败")
+                    }
+                }
+            })
         }
     }
 
@@ -23,8 +59,14 @@ class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>()
 
     }
 
-    override val mBinding: FragmentRegistBinding
-        get() = FragmentRegistBinding.inflate(layoutInflater)
     override val mViewModel: RegistViewModel
-        get() = getViewModel()
+        get() = ViewModelProvider(this).get(RegistViewModel::class.java)
+
+    override fun initBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentRegistBinding {
+        return FragmentRegistBinding.inflate(inflater, container, false)
+    }
 }

@@ -44,7 +44,7 @@ class RetrofitHelper private constructor() {
     /**
      * 新的URL
      */
-    fun addUrl(url: String) {
+    fun getRetrofit(url: String): Retrofit {
         retrofit = retrofitMap[url]
         if (retrofit == null) {
             retrofit = retrofit {
@@ -55,6 +55,7 @@ class RetrofitHelper private constructor() {
             }
             retrofitMap[url] = retrofit!!
         }
+        return retrofit!!
     }
 
     fun <T> create(clazz: Class<T>): T {

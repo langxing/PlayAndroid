@@ -2,8 +2,11 @@ package com.example.login.ui.login
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import android.text.Editable
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,12 +16,12 @@ import com.example.common.service.ServiceManager
 import com.example.login.R
 import com.example.login.data.Result
 import com.example.login.databinding.FragmentLoginBinding
+import com.example.login.ui.LoginViewModelFactory
 import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.signClick
 import com.zxf.basic.expand.toast
 import com.zxf.basic.utils.MMKVUtils
 import com.zxf.basic.view.EditWatcher
-import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
 
@@ -26,7 +29,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
     private lateinit var loginResult: Observer<Result<String>>
 
     override fun initView() {
-        titlebar.onBackClick = {
+        mBinding.titlebar.onBackClick = {
             if (!findNavController().popBackStack()) {
                 requireActivity().finish()
             }
@@ -34,21 +37,21 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
         val afterTextChangedListener = object : EditWatcher() {
 
             override fun afterTextChanged(s: Editable) {
-                loginViewModel.loginDataChanged(
+                mViewModel.loginDataChanged(
                     mBinding.tvPersonUsername.text.toString(),
                     mBinding.tvPersonPassword.text.toString()
                 )
             }
 
         }
-        tv_person_register.signClick {
+        mBinding.tvPersonRegister.signClick {
             findNavController().navigate(R.id.registFragment)
         }
         mBinding.tvPersonUsername.addTextChangedListener(afterTextChangedListener)
         mBinding.tvPersonPassword.addTextChangedListener(afterTextChangedListener)
         mBinding.tvPersonPassword.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.login(
+                mViewModel.login(
                     mBinding.tvPersonUsername.text.toString(),
                     mBinding.tvPersonPassword.text.toString()
                 )
@@ -57,7 +60,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
         }
         mBinding.btnPersonLogin.setOnClickListener {
             mBinding.pbLoading.visibility = View.VISIBLE
-            loginViewModel.login(
+            mViewModel.login(
                 mBinding.tvPersonUsername.text.toString(),
                 mBinding.tvPersonPassword.text.toString()
             ).observe(viewLifecycleOwner, loginResult)
@@ -67,7 +70,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun initData() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(viewLifecycleOwner,
+        mViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
                 if (loginFormState == null) {
                     return@Observer
@@ -104,12 +107,17 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
                 mBinding.pbLoading.visibility = View.GONE
             }, 500)
         }
-
     }
 
-    override val mBinding: FragmentLoginBinding
-        get() = FragmentLoginBinding.inflate(layoutInflater)
     override val mViewModel: LoginViewModel
-        get() = getViewModel()
+        get() = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+    override fun initBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentLoginBinding {
+        return FragmentLoginBinding.inflate(inflater, container, false)
+    }
 
 }

@@ -1,7 +1,7 @@
-package com.example.android.http
+package com.example.login.data.http
 
-import com.example.android.utils.runOnUIThread
-import com.example.login.data.http.BaseResponse
+import android.os.Handler
+import android.os.Looper
 import com.zxf.basic.http.HttpCode
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,7 +10,7 @@ import retrofit2.Response
 abstract class HttpCallBack<T> : Callback<BaseResponse<T>>  {
 
     override fun onResponse(call: Call<BaseResponse<T>>, response: Response<BaseResponse<T>>) {
-        runOnUIThread {
+        Handler(Looper.getMainLooper()).post {
             if (response.isSuccessful) {
                 val responseData = response.body()
                 if (responseData?.errorCode == HttpCode.CODE_SUCCESS) {

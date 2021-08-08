@@ -2,10 +2,10 @@ package com.example.android.data.repository
 
 import com.example.android.data.api.HomeService
 import com.example.android.data.bean.ArticleData
-import com.example.android.http.BaseResponse
-import com.example.android.http.HttpCallBack
-import com.example.android.http.Result
-import com.example.android.http.Result.Error
+import com.example.login.data.http.BaseResponse
+import com.example.login.data.http.HttpCallBack
+import com.example.login.data.http.Result
+import com.example.login.data.http.Result.Error
 import com.zxf.basic.http.HttpCode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose

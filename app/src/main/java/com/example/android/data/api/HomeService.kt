@@ -2,7 +2,7 @@ package com.example.android.data.api
 
 import com.example.android.data.bean.ArticleData
 import com.example.android.data.bean.BannerInfo
-import com.example.android.http.BaseResponse
+import com.example.login.data.http.BaseResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
