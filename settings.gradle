@@ -1,6 +1,6 @@
 rootProject.name = "PlayAndroid"
 include ':app'
-include ':main'
+include ':debug'
 
 include ':basic'
 project(':basic').projectDir = new File('libs/basic')
