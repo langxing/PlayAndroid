@@ -68,7 +68,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
     }
 
     override fun initData() {
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
+//        loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
         mViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
@@ -110,7 +110,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
     }
 
     override val mViewModel: LoginViewModel
-        get() = ViewModelProvider(this).get(LoginViewModel::class.java)
+        get() = getViewModel()
 
     override fun initBinding(
         inflater: LayoutInflater,

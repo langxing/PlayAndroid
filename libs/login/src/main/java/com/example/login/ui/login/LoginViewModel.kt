@@ -9,10 +9,16 @@ import com.example.login.data.LoginRepository
 import com.example.login.data.Result
 
 import com.example.login.R
+import com.example.login.data.remote.UserService
 import com.zxf.basic.base.BaseViewModel
+import com.zxf.basic.http.RetrofitHelper
 
-class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewModel() {
+class LoginViewModel : BaseViewModel() {
+    private val service = RetrofitHelper.get()
+        .getRetrofit("https://www.wanandroid.com/")
+        .create(UserService::class.java)
 
+    private val loginRepository = LoginRepository(service)
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 

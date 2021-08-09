@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.login.R
 import com.example.login.data.Result
 import com.example.login.databinding.FragmentRegistBinding
+import com.example.login.ui.LoginViewModelFactory
 import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.signClick
 import com.zxf.basic.expand.toast
@@ -60,7 +61,7 @@ class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>()
     }
 
     override val mViewModel: RegistViewModel
-        get() = ViewModelProvider(this).get(RegistViewModel::class.java)
+        get() = getViewModel()
 
     override fun initBinding(
         inflater: LayoutInflater,

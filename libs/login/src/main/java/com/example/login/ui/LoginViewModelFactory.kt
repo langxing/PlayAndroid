@@ -19,7 +19,7 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java) || modelClass.isAssignableFrom(RegistViewModel::class.java)) {
             val service = RetrofitHelper.get().getRetrofit("https://www.wanandroid.com/").create(UserService::class.java)
             return LoginViewModel(
-                loginRepository = LoginRepository(service)
+
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

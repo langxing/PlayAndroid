@@ -4,11 +4,13 @@ import com.example.login.data.http.HttpCallBack
 import com.example.login.data.remote.UserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import retrofit2.Call
 import java.lang.Exception
 
 /**
@@ -46,6 +48,7 @@ class LoginRepository(private val service: UserService) {
 
     @ExperimentalCoroutinesApi
     fun regist(username: String, password: String, rePassword: String) = callbackFlow {
+        var call: Call<*>? = null
         when {
             username.isEmpty() -> {
                 sendBlocking(Result.Error(Exception("用户名不能为空")))
@@ -57,7 +60,8 @@ class LoginRepository(private val service: UserService) {
                 sendBlocking(Result.Error(Exception("确认密码必须和密码一致")))
             }
             else -> {
-                service.login(username, password).enqueue(object: HttpCallBack<Any>() {
+                call = service.login(username, password)
+                call.enqueue(object: HttpCallBack<Any>() {
                     override fun onSuccess(data: Any) {
                         sendBlocking(Result.Success("注册成功"))
                     }
@@ -68,6 +72,9 @@ class LoginRepository(private val service: UserService) {
 
                 })
             }
+        }
+        awaitClose {
+            call?.cancel()
         }
     }
         .flowOn(Dispatchers.IO)
