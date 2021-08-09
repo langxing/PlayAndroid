@@ -1,7 +1,5 @@
 package com.example.android.http
 
-import com.example.login.data.http.Result
-
 sealed class Result<T> {
     /**
      * 请求成功
