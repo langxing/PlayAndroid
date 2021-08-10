@@ -10,12 +10,14 @@ import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.BarUtils
 import com.example.common.R
 import com.example.common.extension.dp2px
-import com.example.common.extension.expandTouchArea
 import com.example.common.extension.sp2px
 import kotlinx.android.synthetic.main.layout_titlebar.view.*
 
 class TitleBar : Toolbar {
     lateinit var onBackClick: () -> Unit
+
+    private var titleColor = Color.WHITE
+    private var titleSize = 18f.sp2px().toFloat()
 
     constructor(context: Context) : this(context, null)
 
@@ -28,14 +30,20 @@ class TitleBar : Toolbar {
         val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.TitleBar)
         tvTitle.text = title
         title = ""
-        tvTitle.setTextColor(typedArray.getColor(R.styleable.TitleBar_titleColor, Color.WHITE))
-        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-            typedArray.getDimension(R.styleable.TitleBar_titleSize, 18f.sp2px().toFloat()))
+        titleColor = typedArray.getColor(R.styleable.TitleBar_titleColor, Color.WHITE)
+        titleSize = typedArray.getDimension(R.styleable.TitleBar_titleSize, 18f.sp2px().toFloat())
+        tvTitle.setTextColor(titleColor)
+        tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
+        typedArray.recycle()
         ivBack.setOnClickListener {
             if (this::onBackClick.isInitialized) {
                 onBackClick.invoke()
             }
         }
+    }
+
+    fun setTitle(title: String) {
+        tvTitle.text = title
     }
 
 }

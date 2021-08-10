@@ -10,3 +10,5 @@ include ':common'
 project(':common').projectDir = new File('libs/common')
 include ':mine'
 project(':mine').projectDir = new File('libs/mine')
+include ':main'
+project(':main').projectDir = new File('libs/main')
