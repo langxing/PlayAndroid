@@ -9,18 +9,16 @@ import android.widget.FrameLayout
 import androidx.core.view.forEach
 
 class PageStateLayout : FrameLayout {
-    var emptyView: View? = null
-    private set
-    var errorView: View? = null
-    private set
-    var contentView: View? = null
-    private set
-    var networkErrorView: View? = null
-    private set
+    private var emptyView: View? = null
+    private var errorView: View? = null
+    private var contentView: View? = null
+    private var networkErrorView: View? = null
 
     constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet)
+    constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
+        contentView = getChildAt(0)
+    }
 
     fun addEmptyView(view: View) {
         emptyView = view
@@ -34,31 +32,6 @@ class PageStateLayout : FrameLayout {
         networkErrorView = view
     }
 
-    fun bind() {
-        contentView = getChildAt(0)
-        if (emptyView != null) {
-            addChild(emptyView)
-        } else if (config?.emptyView != null){
-            emptyView = config?.emptyView
-            addChild(emptyView)
-        }
-        if (errorView != null) {
-            addChild(errorView)
-        } else if (config?.errorView != null) {
-            errorView = config?.errorView
-            addChild(errorView)
-        }
-        if (networkErrorView != null) {
-            addChild(networkErrorView)
-        } else if (config?.networkErrorView != null) {
-            networkErrorView = config?.networkErrorView
-            addChild(networkErrorView)
-        }
-        emptyView?.visibility = View.GONE
-        errorView?.visibility = View.GONE
-        networkErrorView?.visibility = View.GONE
-    }
-
     private fun addChild(view: View?, index: Int = 0) {
         if (view != null) {
             (view.parent as? ViewGroup)?.removeView(view)
@@ -68,28 +41,49 @@ class PageStateLayout : FrameLayout {
 
     fun showEmpty() {
         if (emptyView != null) {
-            forEach {
-                it.visibility = View.GONE
+            if (indexOfChild(emptyView) != -1) {
+                forEach {
+                    it.visibility = View.GONE
+                }
+                emptyView?.visibility = View.VISIBLE
+            } else {
+                addChild(emptyView)
             }
-            emptyView?.visibility = View.VISIBLE
+        } else if (config?.emptyView != null) {
+            addEmptyView(config?.emptyView!!)
+            addChild(config?.emptyView!!)
         }
     }
 
     fun showError() {
         if (errorView != null) {
-            forEach {
-                it.visibility = View.GONE
+            if (indexOfChild(errorView) != -1) {
+                forEach {
+                    it.visibility = View.GONE
+                }
+                errorView?.visibility = View.VISIBLE
+            } else {
+                addChild(errorView)
             }
-            errorView?.visibility = View.VISIBLE
+        } else if (config?.errorView != null) {
+            addErrorView(config?.errorView!!)
+            addChild(config?.errorView!!)
         }
     }
 
     fun showNetworkError() {
         if (networkErrorView != null) {
-            forEach {
-                it.visibility = View.GONE
+            if (indexOfChild(networkErrorView) != -1) {
+                forEach {
+                    it.visibility = View.GONE
+                }
+                networkErrorView?.visibility = View.VISIBLE
+            } else {
+               addChild(networkErrorView)
             }
-            errorView?.visibility = View.VISIBLE
+        } else if (config?.networkErrorView != null) {
+            addNetworkErrorView(config?.networkErrorView!!)
+            addChild(config?.networkErrorView!!)
         }
     }
 
@@ -100,10 +94,6 @@ class PageStateLayout : FrameLayout {
             }
             contentView?.visibility = View.VISIBLE
         }
-    }
-
-    fun hideContent() {
-        contentView?.visibility = View.GONE
     }
 
     companion object {
