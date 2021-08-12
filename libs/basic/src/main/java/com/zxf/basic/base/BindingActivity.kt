@@ -2,12 +2,11 @@ package com.zxf.basic.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
 import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
 
-abstract class BindingActivity<V : ViewBinding>(@LayoutRes private val layout: Int) : BaseActivity() {
+abstract class BindingActivity<V : ViewBinding> : BaseActivity() {
 
     lateinit var mBinding: V
     private set

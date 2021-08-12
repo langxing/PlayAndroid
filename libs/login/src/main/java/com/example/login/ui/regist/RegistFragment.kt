@@ -15,7 +15,7 @@ import com.zxf.basic.view.EditWatcher
  *
  * @author Jack 2021-08-07 21:48
  */
-class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>(R.layout.fragment_regist) {
+class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>() {
 
     override fun initView() {
         mBinding.titlebar.onBackClick =  {

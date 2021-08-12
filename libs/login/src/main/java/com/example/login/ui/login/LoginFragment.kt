@@ -2,28 +2,23 @@ package com.example.login.ui.login
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.text.Editable
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.common.Constant
 import com.example.common.service.ServiceManager
 import com.example.login.R
 import com.example.login.data.Result
 import com.example.login.databinding.FragmentLoginBinding
-import com.example.login.ui.LoginViewModelFactory
 import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.signClick
 import com.zxf.basic.expand.toast
 import com.zxf.basic.utils.MMKVUtils
 import com.zxf.basic.view.EditWatcher
 
-class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>(R.layout.fragment_login) {
+class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
 
     private lateinit var loginResult: Observer<Result<String>>
 

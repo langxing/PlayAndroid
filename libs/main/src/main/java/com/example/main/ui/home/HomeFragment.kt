@@ -8,7 +8,7 @@ import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.signClick
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BindingFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
+class HomeFragment : BindingFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun layout(): Int = R.layout.fragment_home
 
@@ -23,8 +23,5 @@ class HomeFragment : BindingFragment<FragmentHomeBinding, HomeViewModel>(R.layou
     override fun initData() {
 
     }
-
-    override val mViewModel: HomeViewModel
-        get() = getViewModel()
 
 }

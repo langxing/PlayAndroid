@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
@@ -12,7 +11,7 @@ import com.zxf.basic.expand.getVmClazz
 import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
 
-abstract class BindingFragment<V : ViewBinding, M : ViewModel>(@LayoutRes private val layout: Int) : BaseFragment() {
+abstract class BindingFragment<V : ViewBinding, M : ViewModel> : BaseFragment() {
 
     lateinit var mBinding: V
     private set
