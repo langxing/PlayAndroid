@@ -1,15 +1,10 @@
 package com.example.login.ui.regist
 
-import android.os.Bundle
 import android.text.Editable
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.login.R
 import com.example.login.data.Result
 import com.example.login.databinding.FragmentRegistBinding
-import com.example.login.ui.LoginViewModelFactory
 import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.signClick
 import com.zxf.basic.expand.toast
@@ -20,7 +15,7 @@ import com.zxf.basic.view.EditWatcher
  *
  * @author Jack 2021-08-07 21:48
  */
-class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>() {
+class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>(R.layout.fragment_regist) {
 
     override fun initView() {
         mBinding.titlebar.onBackClick =  {
@@ -60,14 +55,4 @@ class RegistFragment : BindingFragment<FragmentRegistBinding, RegistViewModel>()
 
     }
 
-    override val mViewModel: RegistViewModel
-        get() = getViewModel()
-
-    override fun initBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): FragmentRegistBinding {
-        return FragmentRegistBinding.inflate(inflater, container, false)
-    }
 }

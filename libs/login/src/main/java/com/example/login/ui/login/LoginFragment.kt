@@ -23,9 +23,8 @@ import com.zxf.basic.expand.toast
 import com.zxf.basic.utils.MMKVUtils
 import com.zxf.basic.view.EditWatcher
 
-class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
+class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>(R.layout.fragment_login) {
 
-    private lateinit var loginViewModel: LoginViewModel
     private lateinit var loginResult: Observer<Result<String>>
 
     override fun initView() {
@@ -68,8 +67,6 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
     }
 
     override fun initData() {
-//        loginViewModel = ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
-
         mViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
                 if (loginFormState == null) {
@@ -107,17 +104,6 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
                 mBinding.pbLoading.visibility = View.GONE
             }, 500)
         }
-    }
-
-    override val mViewModel: LoginViewModel
-        get() = getViewModel()
-
-    override fun initBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): FragmentLoginBinding {
-        return FragmentLoginBinding.inflate(inflater, container, false)
     }
 
 }

@@ -4,15 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.zxf.basic.expand.getVmClazz
+import java.lang.reflect.Method
+import java.lang.reflect.ParameterizedType
 
-abstract class BindingFragment<V : ViewBinding, M : ViewModel> : BaseFragment() {
+abstract class BindingFragment<V : ViewBinding, M : ViewModel>(@LayoutRes private val layout: Int) : BaseFragment() {
 
     lateinit var mBinding: V
     private set
 
-    abstract val mViewModel: M
+    lateinit var mViewModel: M
+    private set
 
     override fun layout(): Int = 0
 
@@ -21,11 +27,19 @@ abstract class BindingFragment<V : ViewBinding, M : ViewModel> : BaseFragment() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = initBinding(inflater, container, savedInstanceState)
-        return if (this::mBinding.isInitialized) mBinding.root else throw NullPointerException("必须先初始化binding")
+        mViewModel = ViewModelProvider(this).get(getVmClazz(this))
+        val type = javaClass.genericSuperclass as ParameterizedType
+        val cls = type.actualTypeArguments[0] as Class<V>
+        try {
+            val inflate: Method = cls.getDeclaredMethod("inflate",
+                LayoutInflater::class.java,
+                ViewGroup::class.java,
+                Boolean::class.java)
+            mBinding = inflate.invoke(null, inflater, container, false) as V
+            return mBinding.root
+        } catch (e: Exception) {
+            throw NullPointerException("必须先初始化binding")
+        }
     }
 
-    abstract fun initBinding(inflater: LayoutInflater,
-                             container: ViewGroup?,
-                             savedInstanceState: Bundle?): V
 }
