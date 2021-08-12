@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.debug
 
 import android.app.Application
 import com.example.common.GlobalContext

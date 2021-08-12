@@ -19,9 +19,9 @@ abstract class BaseActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         if (layout() != 0) {
             setContentView(layout())
+            initView()
+            initData()
         }
-        initView()
-        initData()
     }
 
     abstract fun layout(): Int

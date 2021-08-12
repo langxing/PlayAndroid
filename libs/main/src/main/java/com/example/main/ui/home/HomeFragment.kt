@@ -2,8 +2,8 @@ package com.example.main.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.common.service.ServiceManager
-import com.example.mine.R
-import com.example.mine.databinding.FragmentHomeBinding
+import com.example.main.R
+import com.example.main.databinding.FragmentHomeBinding
 import com.zxf.basic.base.BindingFragment
 import com.zxf.basic.expand.signClick
 import kotlinx.android.synthetic.main.fragment_home.*

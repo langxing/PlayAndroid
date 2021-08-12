@@ -43,6 +43,9 @@ dependencies {
     if (runMine.toBoolean()) {
         implementation project(path: ':mine')
     }
+    if (runMain.toBoolean()) {
+        implementation project(path: ':main')
+    }
     implementation Libs.autoService
     kapt Libs.autoService
 

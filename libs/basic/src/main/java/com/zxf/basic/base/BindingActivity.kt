@@ -17,15 +17,11 @@ abstract class BindingActivity<V : ViewBinding> : BaseActivity() {
         super.onCreate(savedInstanceState)
         val type = javaClass.genericSuperclass as ParameterizedType
         val cls = type.actualTypeArguments[0] as Class<V>
-        try {
-            val inflate: Method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java)
-            mBinding = inflate.invoke(null, layoutInflater) as V
-            setContentView(mBinding.root)
-            initView()
-            initData()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        val inflate: Method = cls.getDeclaredMethod("inflate", LayoutInflater::class.java)
+        mBinding = inflate.invoke(null, layoutInflater) as V
+        setContentView(mBinding.root)
+        initView()
+        initData()
     }
 
 }

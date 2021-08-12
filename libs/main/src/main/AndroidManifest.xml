@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mine">
+    package="com.example.main">
     <application>
-        <activity android:name="com.example.main.MineActivity"/>
+        <activity android:name=".MainActivity"/>
     </application>
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.debug
 
 import android.os.Bundle
 import android.widget.TextView
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_debug)
         tvLogin.setOnClickListener {
             ServiceManager.startLogin(this) {
 
