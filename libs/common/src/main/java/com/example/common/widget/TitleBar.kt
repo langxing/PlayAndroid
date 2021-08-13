@@ -2,6 +2,7 @@ package com.example.common.widget
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ class TitleBar : Toolbar {
 
     private var titleColor = Color.WHITE
     private var titleSize = 18f.sp2px().toFloat()
+    private var mLeftIcon: Drawable? = null
 
     constructor(context: Context) : this(context, null)
 
@@ -30,8 +32,12 @@ class TitleBar : Toolbar {
         val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.TitleBar)
         tvTitle.text = title
         title = ""
+        mLeftIcon = typedArray.getDrawable(R.styleable.TitleBar_leftIcon)
         titleColor = typedArray.getColor(R.styleable.TitleBar_titleColor, Color.WHITE)
         titleSize = typedArray.getDimension(R.styleable.TitleBar_titleSize, 18f.sp2px().toFloat())
+        if(mLeftIcon != null) {
+            ivBack.setImageDrawable(mLeftIcon)
+        }
         tvTitle.setTextColor(titleColor)
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
         typedArray.recycle()

@@ -2,6 +2,8 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:choiceMode="singleChoice"
     android:background="@color/colorPageBg">
 
     <LinearLayout
@@ -339,41 +341,6 @@
             style="@style/DividerStyle"
             android:layout_marginBottom="45dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/setting"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="设置"
-                android:textColor="@color/blackText" />
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="2dp"
-                android:background="@color/itemBackground" />
-
-            <TextView
-                android:id="@+id/quit"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="退出程序"
-                android:textColor="@color/blackText" />
-
-        </LinearLayout>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

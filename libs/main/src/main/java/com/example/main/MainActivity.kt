@@ -17,6 +17,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
             R.string.menu_open,
             R.string.menu_close)
         drawerToggle.syncState()
+        drawerToggle.isDrawerIndicatorEnabled = false
         mBinding.titlebar.onBackClick = {
             if (mMenuOpen) {
                 mBinding.drawerLayout.close()
