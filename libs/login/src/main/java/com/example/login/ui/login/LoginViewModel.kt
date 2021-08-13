@@ -1,10 +1,7 @@
 package com.example.login.ui.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.example.login.data.LoginRepository
 import com.example.login.data.Result
 
@@ -12,6 +9,8 @@ import com.example.login.R
 import com.example.login.data.remote.UserService
 import com.zxf.basic.base.BaseViewModel
 import com.zxf.basic.http.RetrofitHelper
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class LoginViewModel : BaseViewModel() {
     private val service = RetrofitHelper.get()
@@ -23,8 +22,14 @@ class LoginViewModel : BaseViewModel() {
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
     fun login(username: String, password: String): LiveData<Result<String>> {
-        val result = loginRepository.login(username, password)
-        return result.asLiveData()
+        val liveData = MutableLiveData<Result<String>>()
+        viewModelScope.launch {
+            loginRepository.login(username, password)
+                .collect {
+                    liveData.value = it
+                }
+        }
+        return liveData
     }
 
     fun loginDataChanged(username: String, password: String) {
