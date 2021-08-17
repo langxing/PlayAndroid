@@ -19,7 +19,7 @@ abstract class BindingFragment<V : ViewBinding, M : ViewModel> : BaseFragment() 
     lateinit var mViewModel: M
     private set
 
-    override fun layout(): Int = 0
+    final override fun layout(): Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,

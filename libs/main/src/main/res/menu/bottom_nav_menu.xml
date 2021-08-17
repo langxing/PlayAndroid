@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/selector_tab_home"
-        android:title="首页" />
+        android:title="首页"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/navigation_data"
         android:icon="@drawable/selector_tab_data"
-        android:title="数据" />
+        android:title="数据"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/navigation_tools"
         android:icon="@drawable/selector_tab_tool"
-        android:title="工具" />
+        android:title="工具"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/navigation_setting"
         android:icon="@drawable/selector_tab_setting"
-        android:title="设置"/>
+        android:title="设置"
+        app:showAsAction="ifRoom"/>
 
 </menu>

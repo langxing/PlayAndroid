@@ -14,13 +14,14 @@
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:leftIcon="@mipmap/ic_title_bar_menu"/>
+            app:leftIcon="@mipmap/ic_title_bar_menu" />
 
         <fragment
             android:id="@+id/fragment_main"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             app:defaultNavHost="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -31,18 +32,25 @@
             android:id="@+id/nav_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp50"
+            app:labelVisibilityMode="labeled"
             app:elevation="0dp"
             app:itemTextColor="@color/selector_main_tab"
-            app:menu="@menu/bottom_nav_menu"/>
+            app:menu="@menu/bottom_nav_menu" />
     </LinearLayout>
     <!-- 左侧侧滑菜单-->
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/colorPageBg"
+        android:choiceMode="singleChoice">
+
+        <include layout="@layout/nav_header_main" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
+            android:layout_gravity="bottom"
             android:orientation="horizontal">
 
             <TextView

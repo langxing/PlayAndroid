@@ -10,8 +10,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BindingFragment<FragmentHomeBinding, HomeViewModel>() {
 
-    override fun layout(): Int = R.layout.fragment_home
-
     override fun initView() {
         tvLogin.signClick {
             ServiceManager.startLogin(requireActivity() as AppCompatActivity) {
