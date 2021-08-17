@@ -1,8 +1,8 @@
 package com.example.common.service
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 
 interface IMainService {
 
-    fun startMain(activity: Activity)
+    fun startMain(activity: AppCompatActivity)
 }

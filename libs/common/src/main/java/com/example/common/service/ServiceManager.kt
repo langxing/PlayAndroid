@@ -21,7 +21,7 @@ object ServiceManager {
         }
     }
 
-    fun startMain(activity: Activity) {
+    fun startMain(activity: AppCompatActivity) {
         val serviceLoader = ServiceLoader.load(IMainService::class.java)
         serviceLoader.forEach {
             it.startMain(activity)

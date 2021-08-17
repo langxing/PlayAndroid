@@ -5,6 +5,7 @@ import android.content.Intent
 import android.text.Editable
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.common.Constant
@@ -83,7 +84,7 @@ class LoginFragment : BindingFragment<FragmentLoginBinding, LoginViewModel>() {
                         MMKVUtils.get().put(Constant.KEY_LOGIN, true)
                         val intent = Intent()
                         val activity = requireActivity()
-                        ServiceManager.startMain(activity)
+                        ServiceManager.startMain(activity as AppCompatActivity)
                         intent.putExtra(Constant.KEY_DATA, "登录成功")
                         activity.setResult(Activity.RESULT_OK, intent)
                         activity.finish()

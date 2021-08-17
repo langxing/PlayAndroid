@@ -3,6 +3,7 @@ package com.example.main
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.common.extension.slide
 import com.example.main.databinding.ActivityMainBinding
 import com.zxf.basic.base.BindingActivity
 
@@ -11,6 +12,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
 
     override fun initView() {
         super.initView()
+        slide()
         val drawerToggle = ActionBarDrawerToggle(this,
             mBinding.drawerLayout,
             mBinding.titlebar,
