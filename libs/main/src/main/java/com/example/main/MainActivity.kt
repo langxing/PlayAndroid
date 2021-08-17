@@ -18,6 +18,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
             R.string.menu_close)
         drawerToggle.syncState()
         drawerToggle.isDrawerIndicatorEnabled = false
+        // 取消导航图标默认着色
+        mBinding.navBottom.itemIconTintList = null
         mBinding.titlebar.onBackClick = {
             if (mMenuOpen) {
                 mBinding.drawerLayout.close()
