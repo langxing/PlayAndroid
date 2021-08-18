@@ -69,6 +69,8 @@ dependencies {
 
     api AndroidX.lifecycle
     kapt AndroidX.lifecycleCompiler
+    api AndroidX.room
+    kapt AndroidX.roomCompiler
 
     implementation Libs.mmkv
     implementation Libs.converterGson

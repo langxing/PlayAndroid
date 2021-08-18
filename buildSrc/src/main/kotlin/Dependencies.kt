@@ -32,6 +32,7 @@ object Versions {
     const val sonic = "3.1.0"
     const val dynamic = "1.0.0"
     const val lifecycle = "2.2.0"
+    const val room = "2.2.6"
 }
 
 object AndroidX {
@@ -48,6 +49,8 @@ object AndroidX {
     const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    const val room = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 }
 
 object Libs {
