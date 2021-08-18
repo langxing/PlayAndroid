@@ -16,8 +16,8 @@ inline fun <reified T> AppCompatActivity.start() {
 }
 
 fun AppCompatActivity.slide() {
-    val trans = Slide().setDuration(500)
-    window.enterTransition = trans
-    window.exitTransition = trans
+//    val trans = Slide().setDuration(500)
+//    window.enterTransition = trans
+//    window.exitTransition = trans
 }
 

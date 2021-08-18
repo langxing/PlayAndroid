@@ -26,15 +26,19 @@ abstract class BindingFragment<V : ViewBinding, M : ViewModel> : BaseFragment() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel = ViewModelProvider(this).get(getVmClazz(this))
-        val type = javaClass.genericSuperclass as ParameterizedType
-        val cls = type.actualTypeArguments[0] as Class<V>
-        val inflate: Method = cls.getDeclaredMethod("inflate",
-            LayoutInflater::class.java,
-            ViewGroup::class.java,
-            Boolean::class.java)
-        mBinding = inflate.invoke(null, inflater, container, false) as V
-        return mBinding.root
+        try {
+            mViewModel = ViewModelProvider(this).get(getVmClazz(this))
+            val type = javaClass.genericSuperclass as ParameterizedType
+            val cls = type.actualTypeArguments[0] as Class<V>
+            val inflate: Method = cls.getDeclaredMethod("inflate",
+                LayoutInflater::class.java,
+                ViewGroup::class.java,
+                Boolean::class.java)
+            mBinding = inflate.invoke(null, inflater, container, false) as V
+            return mBinding.root
+        } catch (e: Exception) {
+            throw NullPointerException()
+        }
     }
 
 }

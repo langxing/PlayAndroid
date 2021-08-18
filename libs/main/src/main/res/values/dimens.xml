@@ -45,4 +45,7 @@
     <dimen name="textSize19">19sp</dimen>
     <dimen name="textSize20">20sp</dimen>
     <dimen name="textSize22">22sp</dimen>
+
+    <dimen name="bus_stop_item_horizontal_padding">16dp</dimen>
+    <dimen name="bus_stop_item_vertical_padding">8dp</dimen>
 </resources>

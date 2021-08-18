@@ -1,5 +1,6 @@
 package com.zxf.basic.adapter
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 
@@ -11,11 +12,12 @@ abstract class DiffAdapter<T> : BaseAdapter() {
     private val mData by lazy {
         AsyncListDiffer(this, object: DiffUtil.ItemCallback<T>() {
             override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
-                return oldItem == newItem
+                return areItemsTheSame(oldItem, newItem)
             }
 
+            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: T, newItem: T): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+                return oldItem == newItem
             }
         })
     }
@@ -31,4 +33,6 @@ abstract class DiffAdapter<T> : BaseAdapter() {
     fun getData(): MutableList<T> {
         return mData.currentList.toMutableList()
     }
+
+    abstract fun areItemsTheSame(oldItem: T, newItem: T): Boolean
 }
