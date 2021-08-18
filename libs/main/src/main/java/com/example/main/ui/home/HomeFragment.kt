@@ -28,6 +28,7 @@ import java.util.*
 class HomeFragment : BaseFragment() {
     private lateinit var mHomeViewModel: HomeViewModel
     private lateinit var mBinding: FragmentHomeBinding
+    private lateinit var mAdapter: DiffAdapter<Schedule>
 
     private var mData = mutableListOf<Schedule>()
 
@@ -48,22 +49,7 @@ class HomeFragment : BaseFragment() {
 
             }
         }
-    }
-
-    override fun initData() {
-        mHomeViewModel = ViewModelProvider(
-            this,
-            HomeViewModelFactory(GlobalContext.database!!.scheduleDao())
-        ).get(HomeViewModel::class.java)
-
-        lifecycleScope.launch {
-            mHomeViewModel.getAllStop()
-                .collect {
-                    mData.addAll(it)
-                }
-        }
-
-        mBinding.recyclerView.adapter = object: DiffAdapter<Schedule>() {
+        mAdapter = object: DiffAdapter<Schedule>() {
 
             override fun layout(): Int {
                 return R.layout.item_bus_stop
@@ -84,7 +70,25 @@ class HomeFragment : BaseFragment() {
             }
 
         }
+
+        mBinding.recyclerView.adapter = mAdapter
         mBinding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    override fun initData() {
+        mHomeViewModel = ViewModelProvider(
+            this,
+            HomeViewModelFactory(GlobalContext.database!!.scheduleDao())
+        ).get(HomeViewModel::class.java)
+
+        lifecycleScope.launch {
+            mHomeViewModel.getAllStop()
+                .collect {
+                    mData.addAll(it)
+                }
+        }
+
+        mAdapter.updateData(mData)
     }
 
 }

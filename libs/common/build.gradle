@@ -45,6 +45,9 @@ dependencies {
 
     implementation Libs.autoService
     kapt Libs.autoService
+    implementation AndroidX.room
+    kapt AndroidX.roomCompiler
+    implementation AndroidX.roomKtx
 
     api Libs.dynamic
 

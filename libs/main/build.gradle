@@ -45,6 +45,10 @@ dependencies {
 
     implementation Libs.autoService
     kapt Libs.autoService
+    implementation AndroidX.room
+    kapt AndroidX.roomCompiler
+    implementation AndroidX.roomKtx
+
     implementation project(path: ':basic')
     implementation project(path: ':common')
     testImplementation 'junit:junit:4.+'
